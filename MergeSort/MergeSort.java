@@ -6,25 +6,24 @@ public class MergeSort {
 	}
 
 	public static String mergeSort(String str) {
-		String fin = str;
+		String fin = new String(str);
 		mergeSort(fin, 0, fin.length());
 		return fin;
 	}
 
 	public static void mergeSort(String str, int start, int end) {
 		if (end < start) {
-			int mid = (end - start) / 2 + start;
+			int mid = ((end - start) / 2) + start;
 
-			String left = str.substring(start, mid);
-			String right = str.substring(mid, end);
+
+			String left = new String(str.substring(start, mid));
+			String right = new String(str.substring(mid + 1, end));
 
 			mergeSort(left, start, mid);
 			mergeSort(right, mid, end);
 
 			merge(left, right);
 		}
-
-		
 	}
 
 	public static String merge(String str1, String str2) {
