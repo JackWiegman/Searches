@@ -1,118 +1,63 @@
 public class MergeSort {
 
 	public static void main(String[] args) {
-		System.out.println(merge("abc", "bcf"));
+		System.out.println(merge("abc", "bcd"));
+		System.out.println(mergeSort("MERGESORT"));
 	}
 
-	public static String merge(String a, String b) {
-		String fin = "";
-
-		int i = 1, j = 1;
-		int n = (a.substring(i - 1, i)).compareTo(b.substring(j - 1, j));
-
-		while (i < a.length() || j < b.length()) {
-
-			if (i < a.length() - 1 && j < b.length() - 1) {
-				n = (a.substring(i - 1, i)).compareTo(b.substring(j - 1, j));
-			}
-
-			if (n >= 1) {
-				fin += a.substring(i - 1, i);
-				i++;
-			} else if (n == 0) {
-				fin += a.substring(i - 1, i);
-				fin += b.substring(j - 1, j);
-				i++;
-				j++;
-			} else if (j < b.length()) {
-				fin += b.substring(j - 1, j);
-				j++;
-			}
-
-		}
-
-		if (i >= a.length()) {
-			fin += b.substring(j);
-		} else if (j >= b.length()) {
-			fin += a.substring(i);
-		}
-
+	public static String mergeSort(String str) {
+		String fin = str;
+		mergeSort(fin, 0, fin.length());
 		return fin;
-		// while (i < a.length() && j < b.length()) {
-		// 	n = (a.substring(i, i+1)).compareTo(b.substring(j, j+1));
-		// 	System.out.println(n);
+	}
 
-		// 	if (i >= a.length()) {
-		// 		fin += b.substring(j);
-		// 		j = b.length();
-		// 	} else if (j >= b.length()) {
-		// 		fin += a.substring(i);
-		// 		i = a.length();
-		// 	} else if (n >= 1) {
-		// 		fin += a.substring(i, i+1);
-		// 		i++;
-		// 	} else if (n == 0) {
-		// 		fin += a.substring(i, i+1);
-		// 		fin += b.substring(j, j+1);
-		// 		i++;
-		// 		j++;
-		// 	} else {
-		// 		fin += b.substring(j, j+1);
-		// 		j++;
-		// 	}
-		// }
+	public static void mergeSort(String str, int start, int end) {
+		if (end < start) {
+			int mid = (end - start) / 2 + start;
 
-		// return fin;
+			String left = str.substring(start, mid);
+			String right = str.substring(mid, end);
 
-		// for (int k = 0; k < str1.length() + str2.length(); k++) {
-		// 	n = (str1.substring(i, i+1)).compareTo(str2.substring(j, j+1));
+			mergeSort(left, start, mid);
+			mergeSort(right, mid, end);
 
-		// 	if (i >= str1.length()) fin += str2.substring(j);
-		// 	else if ()
-
-		// 	if (i < str1.length()) {
-		// 		if (j < str2.length()) {
-		// 			if (n == 1) {
-		// 				fin += str1.substring(i, i+1);
-		// 				i++;
-		// 			} else if (n == 0) {
-		// 				fin += str1.substring(i, i+1);
-		// 				fin += str2.substring(j, j+1);
-		// 				i++;
-		// 				j++;
-		// 			} else {
-		// 				fin += str2.substring(j, j+1)
-		// 				j++;
-		// 			}
-		// 		} else {
-		// 			fin += str1.substring(i);
-		// 		}
-		// 	} else if (j < str2.length()) {
-		// 		fin += st
-		// 	}
-
-			
-
-		// 	if (n == 1) {
-		// 		str1.substring
-		// 	}
-
-			// n = (str1.substring(i, i+1)).compareTo(str2.substring(i, i+1)); // -1, 0, 1
-			// System.out.println("n = " + n);
-
-			// if (n == 1) {
-			// 	fin += str1.substring(i, i+1);
-			// 	System.out.println("1");
-			// } else if (n == 0) {
-			// 	fin += str1.substring(i, i+1);
-			// 	fin += str2.substring(i, i+1);
-			// 	System.out.println("0");
-			// } else {
-			// 	fin += str2.substring(i, i+1);
-			// 	System.out.println("-1");
-			// }
+			merge(left, right);
+		}
 
 		
+	}
+
+	public static String merge(String str1, String str2) {
+		int a = 0, b = 0;
+		String sorted = "";
+		String letter;
+
+		while (a < str1.length() && b < str2.length()) {
+			String let1 = str1.substring(a, a+1);
+			String let2 = str2.substring(b, b+1);			
+
+			if (let2.compareTo(let1) >= 0) {
+				sorted += let1;
+				a++;
+			} else {
+				sorted += let2;
+				b++;
+			}
+		}
+
+		while (a < str1.length()) {
+			letter = str1.substring(a, a+1);
+			sorted += letter;
+			a++;
+		}
+
+		while (b < str2.length()) {
+			letter = str2.substring(b, b+1);
+			sorted += letter;
+			b++;
+		}
+
+		return sorted;
 	}
 
 }
