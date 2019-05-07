@@ -33,7 +33,7 @@ public class MergeSort {
 
 		while (a < str1.length() && b < str2.length()) {
 			String let1 = str1.substring(a, a+1);
-			String let2 = str2.substring(b, b+1);			
+			String let2 = str2.substring(b, b+1);
 
 			if (let2.compareTo(let1) >= 0) {
 				sorted += let1;

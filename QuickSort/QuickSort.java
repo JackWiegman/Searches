@@ -17,12 +17,16 @@ public class QuickSort {
 
 	public static void partition(String str, int start, int end) {
 		// PICK A PIVOT
-		int pivotIndex = Math.random() * str.length();
+		int pivotIndex = Math.random() * (str.length() - 1);
+		String pivot = str.substring(pivotIndex, pivotIndex+1);
 
 
 		// REORDER LIST
 		for (int i = 0; i < str.length(); i++) {
-			if (str.substring(pivotIndex, pivotIndex + 1).compareTo())
+			String current = str.substring(i, i+1);
+			if (pivotIndex.compareTo(current) >= 0) {
+				
+			}
 		}
 
 		
